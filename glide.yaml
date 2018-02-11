@@ -1,0 +1,4 @@
+package: github.com/appscode/hello-websocket
+import:
+- package: github.com/gorilla/websocket
+  version: v1.2.0
