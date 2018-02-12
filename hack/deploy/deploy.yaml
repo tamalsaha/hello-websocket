@@ -19,7 +19,7 @@ spec:
       - args:
         - run
         - --v=3
-        image: appscode/hello-websocket:canary
+        image: appscode/hello-websocket:0.1.0
         imagePullPolicy: Always
         name: hello-websocket
         ports:
