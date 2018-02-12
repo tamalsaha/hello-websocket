@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-websocket
+  name: hello-websocket
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-websocket
+  template:
+    metadata:
+      labels:
+        app: hello-websocket
+    spec:
+      containers:
+      - args:
+        - run
+        - --v=3
+        image: appscode/hello-websocket:canary
+        imagePullPolicy: Always
+        name: hello-websocket
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-websocket
+  namespace: default
+  labels:
+    app: hello-websocket
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  selector:
+    app: hello-websocket
